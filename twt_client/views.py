@@ -48,6 +48,6 @@ def list_tweets(request):
         print("Cached")
 
     tweets = []
-    for tweet in sorted(Tweet.objects.all(), key=lambda tweet: datetime.datetime.strptime(json.loads(tweet.data)['created_at'], "%a %b %d %H:%M:%S %z %Y").timestamp(), reverse=True):
+    for tweet in sorted(Tweet.objects.all(), key=lambda tweet: datetime.datetime.strptime(json.loads(tweet.data)['created_at'], "%a %b %d %H:%M:%S %z %Y").timestamp(), reverse=False):
         tweets.append(json.loads(tweet.data))
     return render_to_response('tweets.html', {'tweets':tweets})
