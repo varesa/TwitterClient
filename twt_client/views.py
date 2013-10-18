@@ -19,10 +19,19 @@ def hello(request):
     return HttpResponse(html)
 
 def update(request=None):
-    tweets = list_timeline()
+    latest_id = Tweet.objects.latest('id')
+
+    tweets = list_timeline(count = 400, since_id=latest_id)
 
     for tweet in tweets:
         Tweet(id = tweet['id'], data = json.dumps(tweet)).save()
+
+    if len(tweets) == 400: # Get another set
+        return update(request)
+
+    newtime = Meta.objects.get(id=0)
+    newtime.time = datetime.datetime.now().timestamp()
+    newtime.save()
 
     if request is not None:
         return HttpResponse("<html><head></head><body>success</body></html>")

@@ -8,10 +8,10 @@ def get_keys():
     print(keys)
     return keys
 
-def list_timeline():
+def list_timeline(*args, **kwargs):
     keys = get_keys()
 
     twitter = Twython(keys['c_key'], keys['c_secret'], keys['a_token'],keys['a_secret'])
-    print(twitter.get_home_timeline(count=40))
+    print(twitter.get_home_timeline(*args, **kwargs))
     return twitter.get_home_timeline()
 
