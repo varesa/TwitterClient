@@ -27,11 +27,19 @@ def update(request):
 
 def list_tweets(request):
 
-    print("Expiration: " + str(int(Meta.objects.get(id=0).time + 300)))
-    print("Now:        " + str(int(datetime.datetime.now().timestamp())))
-    if int((Meta.objects.get(id=0).time + 5)) < int(datetime.datetime.now().timestamp()):
+    try:
+        expiretime = int(Meta.objects.get(id=0).time) + 300
+    except Meta.DoesNotExist:
+        Meta(id=0, time=datetime.datetime.now().timestamp()).save()
+
+    now = datetime.datetime.now().timestamp()
+
+    print("Expiration: " + str(expiretime))
+    print("Now:        " + str(now))
+
+    if now > expiretime:
         print("Not cached")
-        #update(request)
+        update(request)
 
         newtime = Meta.objects.get(id=0)
         newtime.time = datetime.datetime.now().timestamp()
@@ -40,9 +48,6 @@ def list_tweets(request):
         print("Cached")
 
     tweets = []
-    for tweet in Tweet.objects.all():
+    for tweet in sorted(Tweet.objects.all(), key=lambda tweet: datetime.datetime.strptime(json.loads(tweet.data)['created_at'], "%a %b %d %H:%M:%S %z %Y").timestamp(), reverse=True):
         tweets.append(json.loads(tweet.data))
     return render_to_response('tweets.html', {'tweets':tweets})
-    """
-    html = "<html><body><h1>Test</h1></body></html>"
-    return HttpResponse(html)"""
