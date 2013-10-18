@@ -16,5 +16,5 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
 
     url(r'^update', 'twt_client.views.update'),
-    url(r'.*', 'twt_client.views.list_tweets'),
+    url(r'^/?$', 'twt_client.views.list_tweets'),
 )
