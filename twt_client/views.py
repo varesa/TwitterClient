@@ -1,6 +1,11 @@
 from django.http import HttpResponse
+from django.shortcuts import render_to_response
 
 from twt_client.twitter_api import list_timeline
+
+import pprint
+
+pp = pprint.PrettyPrinter(indent=4)
 
 # Create your views here.
 
@@ -9,6 +14,8 @@ def hello(request):
     return HttpResponse(html)
 
 def list_tweets(request):
-    list_timeline()
-    html = "<html><body><h1>Test</h1></body></html>"
-    return HttpResponse(html)
+    tweets = list_timeline()
+    pp.pprint(tweets[0])
+    return render_to_response('tweets.html', {'tweets':tweets})
+    """html = "<html><body><h1>Test</h1></body></html>"
+    return HttpResponse(html)"""

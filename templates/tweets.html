@@ -12,7 +12,7 @@
     </style>
 </head>
 <body>
-
+    {% for tweet in tweets %}
     <div class="tweet original-tweet js-stream-tweet js-actionable-tweet js-profile-popup-actionable js-original-tweet has-cards" data-feedback-key="stream_status_390721487247650816" data-tweet-id="390721487247650816" data-item-id="390721487247650816" data-screen-name="Olimex" data-name="OLIMEX Ltd" data-user-id="38416919"
         data-expanded-footer="
             <div class=&quot;js-tweet-details-fixer tweet-details-fixer&quot;>
@@ -59,34 +59,34 @@
         <div class="content">
             <div class="stream-item-header">
                 <a class="account-group js-account-group js-action-profile js-user-profile-link js-nav" href="/Olimex" data-user-id="38416919">
-                    <img class="avatar js-action-profile-avatar" src="https://si0.twimg.com/profile_images/761655605/TWITTER_normal.jpg" alt="">
-                    <strong class="fullname js-action-profile-name show-popup-with-id">OLIMEX Ltd</strong>
+                    <img class="avatar js-action-profile-avatar" src="{{ tweet.user.profile_image_url }}" alt="">
+                    <strong class="fullname js-action-profile-name show-popup-with-id">{{ tweet.user.name }}</strong>
                     <span>‏</span>
-                    <span class="username js-action-profile-name"><s>@</s><b>Olimex</b></span>
+                    <span class="username js-action-profile-name"><s>@</s><b>{{ tweet.user.screen_name }}</b></span>
 
                 </a>
                 <small class="time">
                     <a href="/Olimex/status/390721487247650816" class="tweet-timestamp js-permalink js-nav" title="11:10 PM - 16 Oct 13"><span class="_timestamp js-short-timestamp js-relative-timestamp" data-time="1381990236" data-long-form="true">2h</span></a>
                 </small>
             </div>
-            <p class="js-tweet-text tweet-text">Oracle attacks Open Source spreading FUD <a href="http://t.co/khl5QU5SLO" rel="nofollow" dir="ltr" data-expanded-url="http://olimex.wordpress.com/2013/10/17/oracle-attacks-open-source-spreading-fud-in-document-addressed-to-dod/" class="twitter-timeline-link" target="_blank" title="http://olimex.wordpress.com/2013/10/17/oracle-attacks-open-source-spreading-fud-in-document-addressed-to-dod/"><span class="tco-ellipsis"></span><span class="invisible">http://</span><span class="js-display-url">olimex.wordpress.com/2013/10/17/ora</span><span class="invisible">cle-attacks-open-source-spreading-fud-in-document-addressed-to-dod/</span><span class="tco-ellipsis"><span class="invisible">&nbsp;</span>…</span></a> <a href="/search?q=%23OlimexBlog&amp;src=hash" data-query-source="hashtag_click" class="twitter-hashtag pretty-link js-nav" dir="ltr"><s>#</s><b>OlimexBlog</b></a></p>
+            <p class="js-tweet-text tweet-text"> {{ tweet.text }}<!--<a href="http://t.co/khl5QU5SLO" rel="nofollow" dir="ltr" data-expanded-url="http://olimex.wordpress.com/2013/10/17/oracle-attacks-open-source-spreading-fud-in-document-addressed-to-dod/" class="twitter-timeline-link" target="_blank" title="http://olimex.wordpress.com/2013/10/17/oracle-attacks-open-source-spreading-fud-in-document-addressed-to-dod/"><span class="tco-ellipsis"></span><span class="invisible">http://</span><span class="js-display-url">olimex.wordpress.com/2013/10/17/ora</span><span class="invisible">cle-attacks-open-source-spreading-fud-in-document-addressed-to-dod/</span><span class="tco-ellipsis"><span class="invisible">&nbsp;</span>…</span></a> <a href="/search?q=%23OlimexBlog&amp;src=hash" data-query-source="hashtag_click" class="twitter-hashtag pretty-link js-nav" dir="ltr"><s>#</s><b>OlimexBlog</b>--></a></p>
             <div class="stream-item-footer">
                 <div class="context"></div>
                 <a class="details with-icn js-details" href="/Olimex/status/390721487247650816">
                     <span class="details-icon js-icon-container">
                         <i class="sm-image"></i>
                     </span>
-                    <b>
+                    <!--<b>
                         <span class="expand-stream-item js-view-details">
                           View photo
                         </span>
                         <span class="collapse-stream-item js-hide-details">
                           Hide photo
                         </span>
-                    </b>
+                    </b>-->
                 </a>
                 <ul class="tweet-actions js-actions">
-                    <li class="action-reply-container">
+                    <!--<li class="action-reply-container">
                         <a role="button" class="with-icn js-action-reply js-tooltip" data-modal="tweet-reply" href="#">
                             <span class="icon sm-reply"></span>
                             <b>Reply</b>
@@ -117,8 +117,8 @@
                             <span class="icon sm-fav"></span>
                             <b>Favorited</b>
                         </a>
-                    </li>
-                    <li class="more-tweet-actions">
+                    </li>-->
+                    <!--<li class="more-tweet-actions">
                         <div class="action-more-container">
                             <div class="dropdown">
                                 <button aria-haspopup="true" type="button" class="btn-link with-icn dropdown-toggle js-dropdown-toggle js-tooltip">
@@ -141,12 +141,12 @@
                                 </div>
                             </div>
                         </div>
-                    </li>
+                    </li>-->
                 </ul>
             </div>
             <div class="expanded-content js-tweet-details-dropdown"></div>
         </div>
     </div>
-
+    {% endfor %}
 </body>
 </html>
